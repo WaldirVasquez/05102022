@@ -2,8 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Año Nuevo Mi Niña Hermosa 💕</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>TE AMO DANITA💕</title>
     <style>
         * {
             margin: 0;
@@ -596,6 +598,24 @@
             }
         }
 
+        /* Botón de música emergente */
+        #musicFallbackBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+            display: none;
+        }
+
         /* Ajustes específicos para pantallas pequeñas */
         @media (max-width: 768px) {
             .modal.active {
@@ -664,6 +684,13 @@
                 font-size: 1.5rem;
                 padding: 8px 20px;
             }
+            
+            #musicFallbackBtn {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
         }
 
         /* Para pantallas muy pequeñas (teléfonos) */
@@ -727,9 +754,12 @@
 </head>
 
 <body>
-    <audio id="bgMusic" autoplay loop muted preload="auto">
+    <!-- AUDIO - MODIFICADO PARA AUTOPLAY -->
+    <audio id="bgMusic" loop preload="auto" playsinline>
         <source src="audio.mp3" type="audio/mpeg">
     </audio>
+    
+    <button id="musicFallbackBtn">🎵 ACTIVAR NUESTRA CANCION 🎵</button>
     
     <div class="animated-bg">
         <div class="wave-container">
@@ -862,11 +892,93 @@
             }
         ];
 
-        // Variables para guardar la posición del scroll
-        let scrollPosition = 0;
-        let scrollTop = 0;
+        // ========== FUNCIÓN MÁGICA PARA EL AUDIO ==========
+        function initializeAudio() {
+            const music = document.getElementById('bgMusic');
+            const fallbackBtn = document.getElementById('musicFallbackBtn');
+            
+            if (!music) {
+                console.log("No se encontró el elemento de audio");
+                return;
+            }
+            
+            // Configurar el audio
+            music.volume = 0.4;
+            music.loop = true;
+            
+            // Función para mostrar botón de emergencia
+            function showFallbackButton() {
+                if (fallbackBtn) {
+                    fallbackBtn.style.display = 'block';
+                    fallbackBtn.onclick = function() {
+                        music.play().then(() => {
+                            fallbackBtn.style.display = 'none';
+                            console.log("Audio iniciado manualmente");
+                        }).catch(e => {
+                            console.log("Error al iniciar audio manualmente");
+                        });
+                    };
+                }
+            }
+            
+            // TRUCO 1: Intentar reproducir inmediatamente al cargar
+            setTimeout(() => {
+                music.play().then(() => {
+                    console.log("¡Audio iniciado automáticamente! 🎵");
+                }).catch(error => {
+                    console.log("Primer intento falló, intentando truco 2...");
+                    
+                    // TRUCO 2: Simular un click en el documento
+                    const fakeClick = new MouseEvent('click', {
+                        view: window,
+                        bubbles: true,
+                        cancelable: true
+                    });
+                    
+                    document.dispatchEvent(fakeClick);
+                    
+                    // TRUCO 3: Intentar de nuevo después del click simulado
+                    setTimeout(() => {
+                        music.play().then(() => {
+                            console.log("¡Audio iniciado después del click simulado! 🎵");
+                        }).catch(e => {
+                            console.log("Segundo intento falló, mostrando botón...");
+                            showFallbackButton();
+                        });
+                    }, 300);
+                });
+            }, 500);
+            
+            // TRUCO 4: Capturar cualquier interacción REAL del usuario
+            let userInteracted = false;
+            
+            const interactionEvents = ['click', 'touchstart', 'mousedown', 'scroll', 'keydown'];
+            
+            interactionEvents.forEach(eventType => {
+                document.addEventListener(eventType, function handleInteraction() {
+                    if (!userInteracted && music.paused) {
+                        userInteracted = true;
+                        music.play().then(() => {
+                            console.log("¡Audio activado por interacción del usuario!");
+                            if (fallbackBtn) fallbackBtn.style.display = 'none';
+                        }).catch(e => {
+                            console.log("Usuario interactuó pero audio no pudo iniciar");
+                        });
+                    }
+                }, { once: true });
+            });
+            
+            // Para iOS: especial manejo
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                document.body.addEventListener('touchstart', function iosAudioFix() {
+                    if (music.paused) {
+                        music.play().catch(e => console.log("iOS: No se pudo reproducir"));
+                    }
+                }, { once: false });
+            }
+        }
 
-        // Crear estrellas brillantes
+        // ========== FUNCIONES ORIGINALES (igual que antes) ==========
         function createSparkles() {
             const sparklesContainer = document.getElementById('sparkles');
             for (let i = 0; i < 50; i++) {
@@ -879,7 +991,6 @@
             }
         }
 
-        // Crear corazones de fondo
         function createBgHearts() {
             const bgHeartsContainer = document.getElementById('bgHearts');
             const hearts = ['💕', '💖', '💗', '💓', '💝'];
@@ -896,6 +1007,9 @@
             }
         }
 
+        let scrollPosition = 0;
+        let scrollTop = 0;
+
         function openModal(index) {
             const modal = document.getElementById('modal');
             const story = stories[index];
@@ -904,21 +1018,19 @@
             document.getElementById('modalText').textContent = story.text;
             document.getElementById('modalImage').src = story.image;
             
-            // Guardar la posición actual del scroll
+            // Guardar posición del scroll
             scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
             scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             
-            // Agregar clase al body para bloquear scroll
+            // Bloquear scroll
             document.body.classList.add('modal-open');
-            
-            // Fijar la posición del body
             document.body.style.top = `-${scrollPosition}px`;
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
             
             modal.classList.add('active');
             
-            // Scroll al inicio del modal en móvil
+            // Scroll al inicio en móvil
             if (window.innerWidth <= 768) {
                 setTimeout(() => {
                     modal.scrollTop = 0;
@@ -932,15 +1044,12 @@
             const modal = document.getElementById('modal');
             modal.classList.remove('active');
             
-            // Remover clase del body
+            // Restaurar scroll
             document.body.classList.remove('modal-open');
-            
-            // Restaurar la posición del scroll
             document.body.style.position = '';
             document.body.style.top = '';
             document.body.style.width = '';
             
-            // Restaurar el scroll
             window.scrollTo(0, scrollPosition);
             document.documentElement.scrollTop = scrollTop;
         }
@@ -955,25 +1064,19 @@
                     const heart = document.createElement('div');
                     
                     if (isMobile && modal) {
-                        // Para móviles: corazones dentro del modal
                         heart.className = 'heart-mobile';
                         heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-                        
-                        // Posicionar dentro del área visible del modal
                         heart.style.left = Math.random() * 80 + 10 + '%';
                         heart.style.top = Math.random() * 60 + 20 + '%';
                         heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
                         heart.style.zIndex = '1002';
-                        
                         modal.appendChild(heart);
                     } else {
-                        // Para desktop: corazones normales
                         heart.className = 'heart';
                         heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                         heart.style.left = Math.random() * 100 + '%';
                         heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
                         heart.style.zIndex = '1001';
-                        
                         document.body.appendChild(heart);
                     }
                     
@@ -989,21 +1092,35 @@
             }
         }
 
+        // ========== INICIALIZACIÓN ==========
+        window.addEventListener('load', function() {
+            // Inicializar efectos visuales
+            createSparkles();
+            createBgHearts();
+            
+            // INICIAR EL AUDIO MÁGICAMENTE
+            initializeAudio();
+            
+            // También intentar cuando la página esté completamente lista
+            setTimeout(initializeAudio, 1000);
+        });
+
         // Cerrar modal con tecla ESC
-        function handleEscape(event) {
+        document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
-        }
+        });
 
+        // Cerrar modal al hacer click fuera
         window.onclick = function(event) {
             const modal = document.getElementById('modal');
             if (event.target === modal) {
                 closeModal();
             }
-        }
+        };
 
-        // Corazones flotantes continuos de fondo
+        // Corazones flotantes continuos
         setInterval(() => {
             const hearts = ['❤️', '💕', '💖', '💗', '💓'];
             const heart = document.createElement('div');
@@ -1023,29 +1140,17 @@
             }, 4000);
         }, 3000);
 
-        // Inicializar efectos
-        createSparkles();
-        createBgHearts();
+        // Efecto para la fecha glitch
+        const dateElement = document.querySelector('.date-glitch');
+        if (dateElement) {
+            setInterval(() => {
+                dateElement.style.animation = 'none';
+                setTimeout(() => {
+                    dateElement.style.animation = 'glitch 2s infinite';
+                }, 10);
+            }, 5000);
+        }
 
-        // Configurar música de fondo
-        window.addEventListener('load', () => {
-            const music = document.getElementById('bgMusic');
-            if (!music) return;
-
-            music.volume = 0.2;
-            music.muted = false;
-
-            const playPromise = music.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(() => {
-                    console.log("Autoplay bloqueado por el navegador");
-                });
-            }
-        });
-
-        // Manejar tecla ESC para cerrar modal
-        document.addEventListener('keydown', handleEscape);
-        
         // Asegurar que se restaure el scroll si la página se recarga
         window.addEventListener('beforeunload', () => {
             if (document.body.classList.contains('modal-open')) {
@@ -1055,15 +1160,6 @@
                 document.body.style.width = '';
             }
         });
-
-        // Efecto adicional para la fecha glitch
-        const dateElement = document.querySelector('.date-glitch');
-        setInterval(() => {
-            dateElement.style.animation = 'none';
-            setTimeout(() => {
-                dateElement.style.animation = 'glitch 2s infinite';
-            }, 10);
-        }, 5000);
     </script>
 </body>
 </html>
