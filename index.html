@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Año Nuevo Mi Niña Hermosa 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .wave-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            animation: wave 15s linear infinite;
+        }
+
+        .wave:nth-child(1) {
+            background: radial-gradient(ellipse at center, rgba(138, 98, 255, 0.3) 0%, transparent 70%);
+            animation-duration: 20s;
+        }
+
+        .wave:nth-child(2) {
+            background: radial-gradient(ellipse at center, rgba(255, 118, 200, 0.3) 0%, transparent 70%);
+            animation-duration: 25s;
+            animation-delay: -5s;
+        }
+
+        .wave:nth-child(3) {
+            background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+            animation-duration: 30s;
+            animation-delay: -10s;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateX(0) translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateX(-25%) translateY(-50px) rotate(180deg);
+            }
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(360deg);
+            }
+        }
+
+        .sparkles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeInDown 1s ease-out;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            margin-bottom: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            background: linear-gradient(45deg, #fff, #ffd1dc, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: glow 3s infinite;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)); }
+        }
+
+        /* Efecto Glitch para la fecha */
+        .date-glitch {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #ffd1dc;
+            margin-top: 25px;
+            text-shadow: 
+                2px 2px 0 #667eea,
+                -2px -2px 0 #f093fb;
+            animation: glitch 2s infinite;
+            position: relative;
+            display: inline-block;
+            padding: 10px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .date-glitch::before,
+        .date-glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .date-glitch::before {
+            animation: glitch-top 1s infinite linear alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+
+        .date-glitch::after {
+            animation: glitch-bottom 1.5s infinite linear alternate-reverse;
+            clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+            -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+            }
+            92% {
+                transform: translate(-1px, 1px);
+            }
+            94% {
+                transform: translate(-1px, -1px);
+            }
+            96% {
+                transform: translate(1px, 1px);
+            }
+            98% {
+                transform: translate(1px, -1px);
+            }
+        }
+
+        @keyframes glitch-top {
+            0%, 100% {
+                transform: translate(0);
+                color: #667eea;
+            }
+            33% {
+                transform: translate(2px, -2px);
+                color: #f093fb;
+            }
+            66% {
+                transform: translate(-2px, 2px);
+                color: #ffd1dc;
+            }
+        }
+
+        @keyframes glitch-bottom {
+            0%, 100% {
+                transform: translate(0);
+                color: #f093fb;
+            }
+            33% {
+                transform: translate(-2px, 2px);
+                color: #667eea;
+            }
+            66% {
+                transform: translate(2px, -2px);
+                color: #ffd1dc;
+            }
+        }
+
+        .header p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            font-style: italic;
+        }
+
+        .subtitle {
+            margin-top: 15px;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #ffd1dc;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(118, 75, 162, 0.4);
+            transition: all 0.4s ease;
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(138, 98, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(118, 75, 162, 0.6);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .card-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .card-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .card-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 30px rgba(118, 75, 162, 0.7);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 20px;
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            animation: scaleIn 0.5s ease-out;
+            box-shadow: 0 25px 80px rgba(118, 75, 162, 0.6);
+            border: 3px solid rgba(138, 98, 255, 0.3);
+            max-height: 90vh;
+            margin: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-inner {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            gap: 25px;
+        }
+
+        .modal-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-text h2 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 15px;
+            text-align: center;
+            animation: pulse 2s infinite;
+            line-height: 1.2;
+        }
+
+        .modal-text p {
+            color: #555;
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            text-align: justify;
+            padding: 15px;
+            background: rgba(138, 98, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #764ba2;
+            margin: 0;
+        }
+
+        .modal-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 250px;
+        }
+
+        .modal-image::before {
+            content: '💕';
+            position: absolute;
+            font-size: 60px;
+            opacity: 0.1;
+            animation: rotate 10s linear infinite;
+        }
+
+        .modal-image img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(118, 75, 162, 0.4);
+            z-index: 10;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg) scale(1.15);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 25px;
+            pointer-events: none;
+            animation: floatHeart 4s ease-in forwards;
+            z-index: 1001;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+        }
+
+        @keyframes floatHeart {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-500px) rotate(180deg) scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-1000px) rotate(360deg) scale(0.5);
+            }
+        }
+
+        /* Corazones especiales para móvil */
+        .heart-mobile {
+            position: absolute;
+            font-size: 20px;
+            pointer-events: none;
+            animation: floatHeartMobile 3s ease-in forwards;
+            z-index: 1002;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+        }
+
+        @keyframes floatHeartMobile {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-150px) rotate(180deg) scale(1.3);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-300px) rotate(360deg) scale(0.5);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.3) rotate(-10deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .floating-hearts-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bg-heart {
+            position: absolute;
+            opacity: 0.15;
+            animation: floatBgHeart 15s infinite;
+        }
+
+        @keyframes floatBgHeart {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-50px) translateX(30px);
+            }
+        }
+
+        /* Ajustes específicos para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .modal.active {
+                align-items: flex-start;
+                padding: 10px;
+            }
+            
+            .modal-content {
+                margin: 10px;
+                max-height: 85vh;
+            }
+            
+            .modal-inner {
+                padding: 20px;
+                gap: 20px;
+            }
+            
+            .modal-text {
+                padding: 10px;
+            }
+            
+            .modal-text h2 {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            
+            .modal-text p {
+                font-size: 0.9rem;
+                padding: 12px;
+                line-height: 1.5;
+            }
+            
+            .modal-image {
+                min-height: 200px;
+            }
+            
+            .modal-image::before {
+                font-size: 40px;
+            }
+            
+            .modal-image img {
+                max-height: 250px;
+                object-fit: cover;
+            }
+            
+            .close-modal {
+                top: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
+                font-size: 20px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 40px 15px;
+                margin-bottom: 30px;
+            }
+            
+            .date-glitch {
+                font-size: 1.5rem;
+                padding: 8px 20px;
+            }
+        }
+
+        /* Para pantallas muy pequeñas (teléfonos) */
+        @media (max-width: 480px) {
+            .modal-content {
+                border-radius: 15px;
+                margin: 5px;
+            }
+            
+            .modal-inner {
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .modal-text h2 {
+                font-size: 1.2rem;
+            }
+            
+            .modal-text p {
+                font-size: 0.85rem;
+                padding: 10px;
+                line-height: 1.4;
+            }
+            
+            .modal-image {
+                min-height: 180px;
+            }
+            
+            .modal-image img {
+                max-height: 200px;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header {
+                padding: 30px 10px;
+                border-radius: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .date-glitch {
+                font-size: 1.2rem;
+                padding: 6px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="bgMusic" autoplay loop muted preload="auto">
+        <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="animated-bg">
+        <div class="wave-container">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </div>
+
+    <div class="sparkles" id="sparkles"></div>
+    <div class="floating-hearts-bg" id="bgHearts"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>✨ TE AMO DANITA✨</h1>
+            <div class="date-glitch" data-text="05 de Octubre 2022">05 de Octubre 2022</div>
+            <p>Cada momento contigo es un regalo del universo</p>
+            <p class="subtitle">🌟 Que este 2026 nos traiga infinitas sonrisas juntos 🌟</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/26/fc/0a/26fc0a787190e9225b1ddbe8d2dab681.jpg" alt="Momento 1" class="card-image">
+                <div class="card-content">
+                    <div class="card-title">💖 El Día Que Todo Cambio</div>
+                    <button class="card-button" onclick="openModal(0)">
+                        <span>💌 Ver Nuestra Historia</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/9c/fe/f2/9cfef25520d1f14d28bd436ab8aa0cc0.jpg" alt="Momento 2" class="card-image">
+                <div class="card-content">
+                    <div class="card-title">🌹 Recuerdos Eternos</div>
+                    <button class="card-button" onclick="openModal(1)">
+                        <span>💌 Ver Nuestra Historia</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/e7/23/af/e723af1bfefea9e20344c0c6339b3450.jpg" alt="Momento 3" class="card-image">
+                <div class="card-content">
+                    <div class="card-title">💫 Mi Universo Eres Tú</div>
+                    <button class="card-button" onclick="openModal(2)">
+                        <span>💌 Ver Nuestra Historia</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=600&h=600&fit=crop" alt="Momento 4" class="card-image">
+                <div class="card-content">
+                    <div class="card-title">🌺 Amor Infinito</div>
+                    <button class="card-button" onclick="openModal(3)">
+                        <span>💌 Ver Nuestra Historia</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/0f/c1/44/0fc14409bad015528c84ebb67fc95171.jpg" alt="Momento 5" class="card-image">
+                <div class="card-content">
+                    <div class="card-title"> Contigo Vuelo</div>
+                    <button class="card-button" onclick="openModal(4)">
+                        <span>💌 Ver Nuestra Historia</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/35/a2/1a/35a21a0fa106b21fac4a8acd99167e59.jpg" alt="Momento 6" class="card-image">
+                <div class="card-content">
+                    <div class="card-title">🎆 Nuestro Futuro Juntos</div>
+                    <button class="card-button" onclick="openModal(5)">
+                        <span>💌 Ver Nuestra Historia</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <div class="modal-inner">
+                <div class="modal-text">
+                    <h2 id="modalTitle">Nuestro Amor</h2>
+                    <p id="modalText"></p>
+                </div>
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="Nuestra Historia">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stories = [
+            {
+                title: "💖 El Día Que Todo Cambió",
+                text: "Jamás olvidaré ese momento mágico cuando nuestras miradas se cruzaron por primera vez. Fue como si el universo entero conspirara para unirnos. Tu sonrisa iluminó mi mundo de una manera que nunca imaginé posible. Desde ese instante supe que tú eras la persona que había estado esperando toda mi vida. Cada latido de mi corazón te llama, cada pensamiento me lleva a ti. Eres mi destino, mi casualidad perfecta, mi milagro hecho realidad.",
+                image: "https://i.pinimg.com/736x/08/b3/2d/08b32ddd8988f25fce9cd7326da76ea0.jpg"
+            },
+            {
+                title: "🌹 Recuerdos Que Brillan Para Siempre",
+                text: "Cada momento contigo es una joya preciosa que guardo en el cofre de mi corazón. Tus risas son sinfonías que alegran mis días, tus abrazos son el refugio más cálido que existe. Recuerdo cada detalle, cada palabra dulce, cada mirada cómplice. Gracias por llenar mi vida de colores brillantes, por enseñarme que el amor verdadero es más hermoso que cualquier cuento de hadas. Contigo he vivido los momentos más felices de mi existencia.",
+                image: "https://i.pinimg.com/1200x/9c/fe/f2/9cfef25520d1f14d28bd436ab8aa0cc0.jpg"
+            },
+            {
+                title: "💫 En Ti Encontré Mi Universo",
+                text: "Eres mucho más que mi pareja, eres mi alma gemela, mi cómplice, mi mejor amiga, mi todo. En tus ojos encuentro paz, en tus brazos encuentro hogar, en tu corazón encuentro el amor más puro. No existen palabras en ningún idioma que puedan expresar la magnitud de lo que siento por ti. Eres mi inspiración diaria, la razón por la que sonrío cada mañana, la estrella que guía mi camino. Contigo aprendí que el amor verdadero no solo existe, sino que supera cualquier fantasía.",
+                image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=600&fit=crop"
+            },
+            {
+                title: "🌺 Un Amor Sin Fronteras Ni Final",
+                text: "Mi amor por ti no conoce límites, trasciende el tiempo y el espacio. Te prometo estar a tu lado en cada amanecer que pinte el cielo de colores, en cada atardecer que nos regale su magia, en cada noche estrellada que ilumine nuestro camino. Seremos tú y yo contra el mundo, de la mano, con el corazón lleno de sueños y el alma repleta de amor. Juntos escribiremos la historia más hermosa, crearemos recuerdos inolvidables y construiremos un futuro lleno de felicidad.",
+                image: "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=600&h=600&fit=crop"
+            },
+            {
+                title: "Contigo Descubrí Cómo Volar",
+                text: "Antes de conocerte, mi vida era un lienzo en blanco. Tú llegaste con todos los colores del arcoíris y lo llenaste de arte, de belleza, de significado. Eres la luz que disipa mis sombras, la calma en medio de mis tormentas, la alegría que inunda cada rincón de mi ser. Gracias por amarme con toda tu pureza, por aceptarme con mis defectos, por hacer de cada día una aventura maravillosa. Contigo aprendí a volar, a soñar sin miedo, a amar sin reservas.",
+                image: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=600&h=600&fit=crop"
+            },
+            {
+                title: "🎆 Nuestro Año Más Brillante Comienza Ahora",
+                text: "¡Feliz Año Nuevo, mi amor! Este 2026 lo comenzamos juntos, unidos por un amor que crece cada día más fuerte. Que este año nos traiga miles de sonrisas, aventuras increíbles, sueños cumplidos y momentos mágicos. Prometo amarte más cada día, cuidarte, valorarte y hacerte feliz. Eres el mejor regalo que la vida me ha dado y quiero pasar todos mis años futuros a tu lado. Te amo con todo mi corazón, mi alma, mi ser entero. Eres y serás siempre mi niña hermosa, mi amor eterno. 💕✨",
+                image: "https://i.pinimg.com/1200x/35/a2/1a/35a21a0fa106b21fac4a8acd99167e59.jpg"
+            }
+        ];
+
+        // Variables para guardar la posición del scroll
+        let scrollPosition = 0;
+        let scrollTop = 0;
+
+        // Crear estrellas brillantes
+        function createSparkles() {
+            const sparklesContainer = document.getElementById('sparkles');
+            for (let i = 0; i < 50; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                sparklesContainer.appendChild(sparkle);
+            }
+        }
+
+        // Crear corazones de fondo
+        function createBgHearts() {
+            const bgHeartsContainer = document.getElementById('bgHearts');
+            const hearts = ['💕', '💖', '💗', '💓', '💝'];
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'bg-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                bgHeartsContainer.appendChild(heart);
+            }
+        }
+
+        function openModal(index) {
+            const modal = document.getElementById('modal');
+            const story = stories[index];
+            
+            document.getElementById('modalTitle').textContent = story.title;
+            document.getElementById('modalText').textContent = story.text;
+            document.getElementById('modalImage').src = story.image;
+            
+            // Guardar la posición actual del scroll
+            scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            
+            // Agregar clase al body para bloquear scroll
+            document.body.classList.add('modal-open');
+            
+            // Fijar la posición del body
+            document.body.style.top = `-${scrollPosition}px`;
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+            
+            modal.classList.add('active');
+            
+            // Scroll al inicio del modal en móvil
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    modal.scrollTop = 0;
+                }, 100);
+            }
+            
+            createHearts();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            
+            // Remover clase del body
+            document.body.classList.remove('modal-open');
+            
+            // Restaurar la posición del scroll
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            
+            // Restaurar el scroll
+            window.scrollTo(0, scrollPosition);
+            document.documentElement.scrollTop = scrollTop;
+        }
+
+        function createHearts() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘', '💞'];
+            const isMobile = window.innerWidth <= 768;
+            const modal = document.getElementById('modal');
+            
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    
+                    if (isMobile && modal) {
+                        // Para móviles: corazones dentro del modal
+                        heart.className = 'heart-mobile';
+                        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                        
+                        // Posicionar dentro del área visible del modal
+                        heart.style.left = Math.random() * 80 + 10 + '%';
+                        heart.style.top = Math.random() * 60 + 20 + '%';
+                        heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                        heart.style.zIndex = '1002';
+                        
+                        modal.appendChild(heart);
+                    } else {
+                        // Para desktop: corazones normales
+                        heart.className = 'heart';
+                        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                        heart.style.zIndex = '1001';
+                        
+                        document.body.appendChild(heart);
+                    }
+                    
+                    heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 4000);
+                    
+                }, i * 150);
+            }
+        }
+
+        // Cerrar modal con tecla ESC
+        function handleEscape(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Corazones flotantes continuos de fondo
+        setInterval(() => {
+            const hearts = ['❤️', '💕', '💖', '💗', '💓'];
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.zIndex = '1001';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 4000);
+        }, 3000);
+
+        // Inicializar efectos
+        createSparkles();
+        createBgHearts();
+
+        // Configurar música de fondo
+        window.addEventListener('load', () => {
+            const music = document.getElementById('bgMusic');
+            if (!music) return;
+
+            music.volume = 0.2;
+            music.muted = false;
+
+            const playPromise = music.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    console.log("Autoplay bloqueado por el navegador");
+                });
+            }
+        });
+
+        // Manejar tecla ESC para cerrar modal
+        document.addEventListener('keydown', handleEscape);
+        
+        // Asegurar que se restaure el scroll si la página se recarga
+        window.addEventListener('beforeunload', () => {
+            if (document.body.classList.contains('modal-open')) {
+                document.body.classList.remove('modal-open');
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+            }
+        });
+
+        // Efecto adicional para la fecha glitch
+        const dateElement = document.querySelector('.date-glitch');
+        setInterval(() => {
+            dateElement.style.animation = 'none';
+            setTimeout(() => {
+                dateElement.style.animation = 'glitch 2s infinite';
+            }, 10);
+        }, 5000);
+    </script>
+</body>
+</html>
